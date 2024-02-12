@@ -1,4 +1,4 @@
-# Lua Language Server Addon Template
+# TIC-80 LUA dialect language server addon
 This is a template for an [addon](https://github.com/LuaLS/lua-language-server/wiki/Addons) that can be used by the [Lua Language Server](https://github.com/LuaLS/lua-language-server).
 
 ## Publishing to Addon Manager
