@@ -7,7 +7,6 @@
 ---@return boolean state
 function fget(spriteId, flag) end
 
-
 ---Sets a sprite flag
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/fset)
 ---@param spriteId integer 0..511
@@ -19,9 +18,8 @@ function fset(spriteId, flag, state) end
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/mget)
 ---@param x integer map coordinate (top left is 0,0)
 ---@param y integer
----@return integer tileId 
+---@return integer tileId
 function mget(x, y) end
-
 
 ---Updates a map tile at given coordinates
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/mset)

@@ -29,7 +29,7 @@ function btnp() end
 function key(code) end
 
 ---Reads state of all keys
----@return boolean is_any_pressed 
+---@return boolean is_any_pressed
 function key() end
 
 ---Reads state of controller code
@@ -49,7 +49,7 @@ function keyp() end
 ---@return number x coordinate of the mouse pointer
 ---@return number y
 ---@return boolean left button is down
----@return boolean middle 
+---@return boolean middle
 ---@return boolean right
 ---@return number scrollx delta since last frame (-31..32)
 ---@return number scrolly
