@@ -1,1 +1,1 @@
-# TIC-80 LUA dialect language server addon
+# TIC-80 LUA functions language server addon
