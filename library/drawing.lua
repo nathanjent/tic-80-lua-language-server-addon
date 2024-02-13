@@ -20,6 +20,22 @@ local COLORS = {
     darkGrey = 15
 }
 
+---@enum spriteFlip
+local SPRITE_FLIP = {
+    none = 0,
+    horizontal = 1,
+    vertical = 2,
+    both = 3
+}
+
+---@enum spriteRotation
+local SPRITE_ROTATION = {
+    none = 0,
+    ninety = 1,
+    oneEighty = 2,
+    twoSeventy = 3
+}
+
 --- Callback function used in map()
 ---@alias remap fun(tile, x, y)
 
@@ -58,7 +74,6 @@ function clip(topLeftX, topLeftY, width, height) end
 function cls(colorIndex) end
 
 ---Clears the screen
----[Open in Browser](https://github.com/nesbox/TIC-80/wiki/cls)
 ---@alias cls fun()
 
 ---Prints a string using foreground sprite data as the font
@@ -72,7 +87,7 @@ function cls(colorIndex) end
 ---@param fixed? boolean fixed width (defaults to false)
 ---@param scale? number font scaling (defaults to 1)
 ---@param alt? boolean if set to true uses the second 128 foreground tiles (#384–511)
----@return number width of the rendrered text in pixels
+---@return number width of the rendered text in pixels
 function font(text, x, y, colorIndex, horiSep, vertiSep, fixed, scale, alt) end
 
 ---Draws a straight line from point (x0,y0) to point (x1,y1) in the specified color.
@@ -98,7 +113,6 @@ function line(x0, y0, x1, y1, color) end
 function map(x, y, w, h, sx, sy, transparentColor, scale, remap) end
 
 ---Draws a 30x17 map section (full screen) to screen position (0,0)
----[Open in Browser](https://github.com/nesbox/TIC-80/wiki/map)
 ---@alias map fun()
 
 ---Draws a pixel in the specified color
@@ -109,10 +123,9 @@ function map(x, y, w, h, sx, sy, transparentColor, scale, remap) end
 function pix(x, y, color) end
 
 ---Retrieve a pixel's color
----[Open in Browser](https://github.com/nesbox/TIC-80/wiki/pix)
 ---@param x number
 ---@param y number
----@return colors color of the pixel at (x,y)
+---@return number colorIndex of the pixel at (x,y)
 function pix(x, y) end
 
 ---Prints text to the screen using the system font
@@ -124,12 +137,51 @@ function pix(x, y) end
 ---@param fixed? boolean use fixed width printing (defaults to false)
 ---@param scale? number font scaling (defaults to 1)
 ---@param smallFont? boolean use small font (defaults to false)
----@return number width of the rendrered text in pixels
+---@return number width of the rendered text in pixels
 function print(text, x, y, color, fixed, scale, smallFont) end
 
--- rect - Draw a filled rectangle
--- rectb - Draw a rectangle border
--- spr - Draw a sprite or composite sprite
--- tri - Draw a filled triangle
--- trib - Draw a triangle border (0.90)
--- textri - Draw a triangle filled with texture
+---Draws a filled rectangle
+---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/rect)
+---@alias rect fun(x: number, y: number, width: number, height: number, color: colors)
+
+---Draws a one pixel thick rectangle border
+---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/rectb)
+---@alias rectb fun(x: number, y: number, width: number, height: number, color: colors)
+
+---Draws the sprite number index ath the x and y coordinates
+---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/spr)
+---@param index any index of the sprite (0..511)
+---@param x number
+---@param y number
+---@param colorkey colors|colors[]
+---@param scale number scale factor (defaults to 1
+---@param flip spriteFlip flip the sprite vertically or horizontally or both
+---@param rotate spriteRotation rotate the sprite by 0, 90, 180 or 270 degrees
+---@param w number width of composite sprite
+---@param h number height of composite sprite
+function spr(index, x, y, colorkey, scale, flip, rotate, w, h) end
+
+---Draws a filled triangle
+---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/tri)
+---@alias tri fun(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, color: colors)
+
+---Draws a triangle border (0.90)
+---@alias trib fun(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, color: colors)
+
+---Draws a triangle filled with texture
+---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/textri)
+---@param x1 number first corner
+---@param y1 number
+---@param x2 number second corner
+---@param y2 number
+---@param x3 number third vertex
+---@param y3 number
+---@param u1 number first vertex UV coordinates
+---@param v1 number
+---@param u2 number second vertex UV coordinates
+---@param v2 number
+---@param u3 number third vertex UV coordinates
+---@param v3 number
+---@param use_map? boolean if false (default), texture is read from SPRITES otherwise from MAP
+---@param trans? colors transparent color index (defaults to -1)
+function textri(x1, y1, x2, y2, x3, y3, u1, v1, u2, v2, u3, v3, use_map, trans) end
