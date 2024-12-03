@@ -1,5 +1,23 @@
 ---@meta
 
+---@alias ColorKeys
+---| '0'  # black
+---| '1'  # purple
+---| '2'  # red
+---| '3'  # orange
+---| '4'  # yellow
+---| '5'  # lightGreen
+---| '6'  # green
+---| '7'  # darkGreen
+---| '8'  # darkBlue
+---| '9'  # blue
+---| '10'  # lightBlue
+---| '11'  # cyan
+---| '12'  # white
+---| '13'  # lightGrey
+---| '14'  # grey
+---| '15'  # darkGrey
+
 ---@alias SpriteFlip
 ---| '0' # none
 ---| '1' # horizontal
@@ -12,28 +30,9 @@
 ---| '2' # oneEighty
 ---| '3' # twoSeventy
 
----@alias ColorKeys
----| '-1' # no color
----| '0'  # black
----| '1'  # purple
----| '2'  # red
----| '3'  # orange
----| '4'  # yellow
----| '5'  # lightGreen
----| '6'  # green
----| '7'  # darkGreen
----| '8'  # darkBlue
----| '9'  # blue
----| '0'  # lightBlue
----| '1'  # cyan
----| '2'  # white
----| '3'  # lightGrey
----| '4'  # grey
----| '5'  # darkGrey
-
 --- Callback function used in map()
 ---@alias TileId number
----@alias remap fun(tile: TileId, x: number, y: number): TileId, SpriteFlip, SpriteRotation
+---@alias Remap fun(tile: TileId, x: number, y: number): TileId, SpriteFlip, SpriteRotation
 
 ---Draws a filled circle
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/circ)
@@ -71,7 +70,6 @@ function ellib(centerX, centerY, horizontalRadius, verticalRadius, colorIndex) e
 
 ---Sets the screen clipping region
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/clip)
----
 ---@param topLeftX? number
 ---@param topLeftY? number
 ---@param width? number
@@ -80,15 +78,12 @@ function clip(topLeftX, topLeftY, width, height) end
 
 ---Unsets the screen clipping region
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/clip)
----@alias clip fun()
+function clip() end
 
 ---Fills the entire screen with `colorIndex`
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/cls)
 ---@param colorIndex? ColorKeys a color in the current palette (defaults to 0)
 function cls(colorIndex) end
-
----Clears the screen
----@alias cls fun()
 
 ---Prints a string using foreground sprite data as the font
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/font)
@@ -123,11 +118,11 @@ function line(x0, y0, x1, y1, color) end
 ---@param sy? number y screen coordinate where drawing of the map section will start
 ---@param transparentColor? ColorKeys | ColorKeys[] transparent color(s) (defaults to -1 = opaque)
 ---@param scale? number map scaling (defaults to 1)
----@param remap? remap function called before every tile is drawn (defaults to nil)
+---@param remap? Remap function called before every tile is drawn (defaults to nil)
 function map(x, y, w, h, sx, sy, transparentColor, scale, remap) end
 
 ---Draws a 30x17 map section (full screen) to screen position (0,0)
----@alias map fun()
+function map() end
 
 ---Draws a pixel in the specified color
 ---[Open in Browser](https://github.com/nesbox/TIC-80/wiki/pix)

@@ -22,7 +22,7 @@ function OVR() end
 
 --- The SCN callback allows you to execute code between the rendering of each scan line
 --- [Open in Browser](https://github.com/nesbox/TIC-80/wiki/SCN)
----@deprecated
+---@deprecated use BDR
 ---@param scanline number # The scan line about to be drawn (0..135)
 function SCN(scanline) end
 
